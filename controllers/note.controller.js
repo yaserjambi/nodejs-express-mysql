@@ -1,9 +1,9 @@
 const db = require("../models");
-const Note = db.tutorials;
+const Note = db.Note;
 const Op = db.Sequelize.Op;
 module.exports = {
 
-create : (req, res) => {
+create_note : (req, res) => {
   if (!req.body.title) {
     res.status(400).send({
       message: "Content can not be empty!"
@@ -31,7 +31,7 @@ create : (req, res) => {
     });
 },
 
-findAll : (req, res) => {
+findAll_note : (req, res) => {
 
   Note.findAll().then(data => {
       res.send(data);
