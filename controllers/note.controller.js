@@ -20,7 +20,7 @@ create_note : (req, res) => {
   // Save Tutorial in the database
   Note.create(note)
     .then(data => {
-      res.send(data);
+      res.send({sucess:"تم تسجيل الطلب"});
 
     })
     .catch(err => {
