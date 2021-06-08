@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 db.sequelize.sync()
 
 require("./routes/note.routes")(app);
+require("./routes/upload")(app);
 
 
 app.get("/", (req, res) => {
