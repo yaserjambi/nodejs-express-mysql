@@ -8,6 +8,12 @@ module.exports = app => {
 
   // Retrieve all Tutorials
   router.get("/findAll", note.findAll_note);
-  app.use('/api/note', router);
+  app.use('/api/note', router,function(req,res,next){
+    res.header(
+      "Access-Control-Allow-Headers",
+      "x-access-token, Origin, Content-Type, Accept"
+  );
+  next();
+  });
 
 };
