@@ -2,26 +2,61 @@
 const IP_server = "localhost:8080"
 const db = require("../models");
 const image = db.image;
+const image2 = db.image2;
+
 const image_customer_uploadFile = require("../middleware/image_customer_order");
+const image_customer_uploadFile2 = require("../middleware/image_customer_order2");
+
+
+
 
 module.exports = {
 customer_uploadFiles: async (req, res) => {
+
+
     const baseUrl = "http://" + IP_server + "/api/note/images/";
+
+
 
     try {
       await image_customer_uploadFile(req, res);
+      console.log(req.files)
 
-      if (req.file == undefined) {
+      for (let s of req.files.file1) {
+      if (s == undefined) {
         return res.status(400).send({ message: "Please upload a file!" });
       }
-      image.create({
-        type: req.file.mimetype,
-        name: req.file.originalname,
-        imageUrl: baseUrl + req.file.filename,
+    
+
+     await image.create({
+        type: s.mimetype,
+        name: s.originalname,
+        imageUrl: baseUrl + s.filename,
       })
-      res.status(200).send({
-        message: "Uploaded the file successfully: " + req.file.originalname,
-      });
+
+    
+
+    }
+
+
+
+
+    for (let s of req.files.file2) {
+      if (s == undefined) {
+        return res.status(400).send({ message: "Please upload a file!" });
+      }
+    
+
+     await image2.create({
+        type: s.mimetype,
+        name: s.originalname,
+        imageUrl: baseUrl + s.filename,
+      })
+
+    
+
+    }
+
     } catch (err) {
       console.log(err);
 
@@ -33,9 +68,10 @@ customer_uploadFiles: async (req, res) => {
       }
 
       res.status(500).send({
-        message: `Could not upload the file: ${req.file.originalname}. ${err}`,
+        message: `Could not upload the file: . ${err}`,
       });
     }
+
   },
 
   customer_get_image: (req, res) => {
