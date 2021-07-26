@@ -2,32 +2,39 @@ const db = require("../models");
 const multer = require("multer");
 
 const Note = db.Note;
+const item = db.item;
+
 const Op = db.Sequelize.Op;
 module.exports = {
 
   create_note: (req, res) => {
-
-
     const data = {
-      description: "true"
+      title: req.body.title,
+      description: req.body.description
+
     }
-    for (let s of req.body.title) {
 
-      Note.create(data)
-        .then(data => {
+    /*
+        const data = {
+          description: "true"
+        }
+        for (let s of req.body.title) {
+    */
+    Note.create(data)
+      .then(data => {
 
-          data.title = s.title
-          data.save()
+        data.title = s.title
+        data.save()
 
 
 
-        }).catch(err => {
-          res.status(500).send({
-            message:
-              err.message || "Error create Note"
-          });
+      }).catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Error create Note"
         });
-    }
+      });
+    //  }
     res.json({ sucess: "success" });
     // Save Tutorial in the database
 
@@ -45,5 +52,8 @@ module.exports = {
         });
       });
   },
+
+
+
 
 }

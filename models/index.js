@@ -19,6 +19,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.item = require("./item.js")(sequelize, Sequelize);
 db.Note = require("./note.model.js")(sequelize, Sequelize);
 db.image = require("./image")(sequelize, Sequelize);
 db.image2 = require("./image2")(sequelize, Sequelize);
