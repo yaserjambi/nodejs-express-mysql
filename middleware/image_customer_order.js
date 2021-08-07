@@ -11,7 +11,7 @@ let storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     console.log(file.originalname);
-    cb(null,"image"+Date.now()+"-"+file.originalname);
+    cb(null, "image" + Date.now() + "-" + file.originalname);
   },
 });
 
@@ -20,7 +20,7 @@ let storage = multer.diskStorage({
 let uploadFile = multer({
   storage: storage,
   limits: { fileSize: maxSize },
-}).fields([{ name: 'file1', maxCount: 5 }, { name: 'file2', maxCount: 5 }])
+}).fields([{ name: 'file1', maxCount: 5 }, { name: 'file2', maxCount: 5 }, { name: 'title', maxCount: 10 },{ name: 'images', maxCount: 10 }])
 
 
 

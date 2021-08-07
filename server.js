@@ -14,7 +14,7 @@ app.use(cors("*"));
 
 app.use(bodyParser.json());
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 db.sequelize.sync()

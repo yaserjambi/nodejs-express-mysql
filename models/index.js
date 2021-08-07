@@ -23,6 +23,12 @@ db.item = require("./item.js")(sequelize, Sequelize);
 db.Note = require("./note.model.js")(sequelize, Sequelize);
 db.image = require("./image")(sequelize, Sequelize);
 db.image2 = require("./image2")(sequelize, Sequelize);
+db.title_many = require("./title")(sequelize, Sequelize);
+db.image2.belongsTo(db.title_many, {
+  as: "title_many",
+});
+
+
 
 
 module.exports = db;
